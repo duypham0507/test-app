@@ -1,0 +1,99 @@
+/* form{
+  margin-top: 100px;
+  margin-left: 30px;
+} */
+.container{
+  margin-top: -25px;
+  min-height: 92.8vh;
+  width: 100%;
+  background-image: url(https://cloud.vector6.com/wp-content/uploads/2020/09/Free-vector-000491-bau-troi-xanh-do-doc-day-sao-dem.jpg);
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.btn{
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn a{
+  position: relative;
+  padding: 15px 30px;
+  margin: 40px;
+  border: 2px solid #0f0;
+  text-transform: uppercase;
+  font-weight: 600;
+  text-decoration: none;
+  letter-spacing: 2px;
+  transition: 0.5s;
+  color: #fff;
+  transition-delay: 0s;
+}
+
+.btn a span{
+  position: relative;
+  z-index: 100;
+}
+
+.btn a:hover{
+  transition-delay: 1.5s;
+  color: #000;
+  box-shadow: 0 0 10px #0f0,
+              0 0 20px #0f0,
+              0 0 40px #0f0,
+              0 0 80px #0f0,
+              0 0 120px #0f0;
+}
+
+.btn a:nth-child(2){
+  filter: hue-rotate(80deg);
+}
+
+.btn a::before{
+  content: '';
+  position: absolute;
+  left: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 2px;
+  background: #0f0;
+  box-shadow: 5px -8px 0 #0f0,
+              5px 8px 0 #0f0;
+  transition: width 0.5s, left 0.5s, height 0.5s, box-shadow 0.5s;
+  transition-delay: 1s, 0.5s, 0s, 0s;
+}
+
+.btn a:hover::before{
+  width: 60%;
+  height: 100%;
+  left: -2px;
+  box-shadow: 5px 0 0 #0f0,
+              5px 0 0 #0f0;
+  transition-delay: 0s, 0.5s, 1s, 1s;
+}
+
+.btn a::after{
+  content: '';
+  position: absolute;
+  right: -20px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 2px;
+  background: #0f0;
+  box-shadow: -5px -8px 0 #0f0, -5px 8px 0 #0f0;
+  transition: width 0.5s, right 0.5s, height 0.5s, box-shadow 0.5s;
+  transition-delay: 1s, 0.5s, 0s, 0s;
+}
+
+.btn a:hover::after{
+  width: 60%;
+  height: 100%;
+  right: -2px;
+  box-shadow: -5px 0 0 #0f0, -5px 0 0 #0f0;
+  transition-delay: 0s, 0.5s, 1s, 1s;
+}

@@ -1,0 +1,40 @@
+<div class="search-box">
+
+  <input type="text" [(ngModel)]="keyword">
+  <button (click)="search()">Search</button>
+
+</div>
+
+<div class="row">
+  <p>Donal Trump: {{trump}} vs Joe Biden: {{biden}}</p>
+  <button routerLink="/group-add" mat-raised-button>Add new</button>
+</div>
+
+<table border="1" class="table" style="margin: 10px;">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Age</td>
+      <td>Created At</td>
+      <td>Actions</td>
+      <td>Vote</td>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of group">
+      <td>{{member.id}}</td>
+      <td>{{member.name}}</td>
+      <td>{{member.age}}</td>
+      <td>{{member.createdAt |date:'M/d/yyyy'}}</td>
+      <td>
+        <button [routerLink]="['/group-detail',member.id]" mat-raised-button color="accent">Show Detail</button>
+        <button [routerLink]="['/group-edit',member.id]" mat-raised-button color="primary">Edit</button>
+        <button (click)="Delete(member.id)" mat-raised-button color="warn">Delete</button>
+      </td>
+      <td>
+        <child-http (childVote)="parentVote($event)"></child-http>
+      </td>
+    </tr>
+  </tbody>
+</table>

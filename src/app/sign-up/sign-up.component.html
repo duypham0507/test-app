@@ -1,0 +1,146 @@
+<form name="form" [formGroup]="form" #f="ngForm" (ngSubmit)="CheckSignUp(f.value)">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="Enter your email" [(ngModel)]="item.email" formControlName="email" required>
+
+    <mat-error *ngIf="formErrors.email.required">
+      Email không được để trống
+    </mat-error>
+    <mat-error *ngIf="formErrors.email.pattern">
+      Đây không phải là một email
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="item.password" formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="formErrors.password.required">
+      Mật khẩu không được để trống
+    </mat-error>
+    <mat-error *ngIf="formErrors.password.minlength && formErrors.password.checkPassword">
+      Mật khẩu phải chứa chữ hoa, chữ thường, số và kí tự đặc biệt
+    </mat-error>
+
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Confirm Password</mat-label>
+    <input matInput [(ngModel)]="item.confirmPassword" formControlName="confirmPassword" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="formErrors.confirmPassword.comparisonValidator">
+      Xác nhận mật khẩu không thành công
+    </mat-error>
+
+  </mat-form-field>
+  <br>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Date of birth</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="item.date" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+    <mat-error *ngIf="formErrors.date.required">
+      Vui lòng nhập ngày tháng sinh
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <mat-select [(ngModel)]="item.addressControl" formControlName="addressControl">
+      <mat-option *ngFor="let address of Address" [value]="address">
+        {{address.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formErrors.addressControl.required">Vui lòng nhập địa chỉ</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Your phone number</mat-label>
+    <input matInput [(ngModel)]="item.phoneNumber" placeholder="Your phone number" formControlName="phoneNumber">
+    <mat-error *ngIf="formErrors.phoneNumber.required">
+      Vui lòng nhập số điện thoại
+    </mat-error>
+    <mat-error *ngIf="formErrors.phoneNumber.pattern">
+      Số điện thoại không hợp lệ
+    </mat-error>
+  </mat-form-field>
+
+  <div class="form-group">
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!form.valid">Sign Up</button>
+    </div>
+  </div>
+</form>
+
+<!-- <form name="form" [formGroup]="form">
+  <mat-form-field appearance="outline">
+    <mat-label>Enter your email</mat-label>
+    <input matInput placeholder="Enter your email" [(ngModel)]="item.email" formControlName="email" required>
+
+    <mat-error *ngIf="formErrors.email.required">
+      Email không được để trống
+    </mat-error>
+    <mat-error *ngIf="formErrors.email.email">
+      Đây không phải là một email
+    </mat-error>
+    <mat-error *ngIf="formErrors.email.maxlength">
+      Email vượt quá độ dài quy định
+    </mat-error>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Password</mat-label>
+    <input matInput [(ngModel)]="item.password" formControlName="password" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngIf="formErrors.password.minlength">
+      Mật khẩu phải chứa chữ hoa, chữ thường, số và kí tự đặc biệt
+    </mat-error>
+    <mat-error *ngIf="!formErrors.password.minlength && formErrors.password.checkPassword">
+      Mật khẩu không được để trống
+    </mat-error>
+
+  </mat-form-field>
+  <br>
+  <mat-form-field class="" appearance="outline">
+    <mat-label>Date of birth</mat-label>
+    <input matInput [matDatepicker]="picker" [(ngModel)]="item.date" formControlName="date">
+    <mat-datepicker-toggle matSuffix [for]="picker">
+      <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+    </mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+  <br>
+  <mat-form-field appearance="outline">
+    <mat-label>Address</mat-label>
+    <mat-select >
+      <mat-option *ngFor="let address of Address" [value]="address">
+        {{address.name}}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="formErrors.addressControl.required">Please choose an address</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Your phone number</mat-label>
+    <input matInput placeholder="Your phone number" [(ngModel)]="item.phoneNumber">
+    <mat-error *ngIf="formErrors.phoneNumber.required">Số điện thoại không hợp lệ</mat-error>
+  </mat-form-field>
+
+  <div class="form-group">
+    <div>
+      <button mat-raised-button color="primary" [disabled]="!form.valid" (click)="CheckSignUp()">Sign Up</button>
+    </div>
+  </div>
+</form>
+ -->

@@ -1,0 +1,20 @@
+<nav class="navbar navbar-inverse navbar-static-left navbar-fixed-left">
+    <div class="navbar-collapse collapse" id="menu">
+        <ul class="nav navbar-nav">
+            <li><a routerLink="/" routerLinkActive="active"><span class="glyphicon glyphicon-home"></span>Home</a></li>
+            <li><a routerLink="/people" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Family</a></li>
+            <li><a routerLink="/group" routerLinkActive="active"><span class="glyphicon glyphicon-user"></span>Group</a></li>
+
+        </ul>
+
+        <div id="fixBtn" class="navbar-right">
+          <a routerLink="/login" class="btn btn-warning navbar-btn">Đăng nhập</a>
+          <a routerLink="/sign-up" class="btn btn-warning navbar-btn">Đăng kí</a>
+          <a routerLink="/login" class="btn btn-warning navbar-btn">Đăng xuất</a>
+        </div>
+    </div>
+</nav>
+
+<div>
+    <router-outlet></router-outlet>
+</div>

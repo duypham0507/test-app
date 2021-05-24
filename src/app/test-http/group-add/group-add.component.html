@@ -1,0 +1,21 @@
+<form class="form" (ngSubmit)="SaveForm()">
+  <mat-form-field appearance="outline">
+    <mat-label>Name</mat-label>
+    <input matInput placeholder="Name" type="text" name="name" minlength="6" maxlength="10" [(ngModel)]="member.name"
+      [formControl]="form" required />
+    <mat-error *ngIf="form.invalid">{{getErrorMessage()}}</mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Age</mat-label>
+    <input matInput placeholder="Age" type="number" name="age" [(ngModel)]="member.age" />
+  </mat-form-field>
+
+  <label>Submit</label>
+  <input type="checkbox" name="submit" [(ngModel)]="member.status" />
+
+  <div class="form-group">
+    <button mat-raised-button color="primary" (click)="CheckRequired()" [disabled]="form.invalid">Save</button>
+    <button type="button" mat-raised-button (click)="goToGroup()">Go back</button>
+  </div>
+</form>
